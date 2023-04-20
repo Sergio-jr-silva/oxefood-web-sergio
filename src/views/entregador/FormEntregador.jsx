@@ -2,41 +2,28 @@ import React from "react";
 import InputMask from 'react-input-mask';
 import { Button, Container, Divider, Form, Icon } from 'semantic-ui-react';
 import axios from "axios";
-class FormCliente extends React.Component{
-	
+class FormEntregador extends React.Component{
+
 	state = {
 
 		nome: null,
 		cpf: null,
 		dataNascimento: null,
 		foneCelular: null,
-		foneFixo: null
+		foneFixo: null,
+		rg:null,
+		qtdEntregasRealizadas:null,
+		valorFrete:null,
+		enderecoRua:null,
+		enderecoNumero:null,
+		enderecoBairro:null,
+		enderecoCidade:null,
+		enderecoCep:null,
+		enderecoUf:null,
+		enderecoCompleto:null,
+		ativo:null
 	}
 
-	salvar = () => {
-
-		let clienteRequest = {
-
-			nome: this.state.nome,
-			cpf: this.state.cpf,
-			dataNascimento: this.state.dataNascimento,
-			foneCelular: this.state.foneCelular,
-			foneFixo: this.state.foneFixo
-		}
-
-	
-	
-		
-		axios.post("http://localhost:8082/api/cliente", clienteRequest)
-		.then((response) => {
-			console.log('Cliente cadastrado com sucesso.')
-		})
-		.catch((error) => {
-			console.log('Erro ao incluir o um cliente.')
-		}) 
-	}
-
- 
     render(){
         return(
             <div>
@@ -45,7 +32,7 @@ class FormCliente extends React.Component{
 
                     <Container textAlign='justified' >
 
-                        <h2> <span style={{color: 'darkgray'}}> Cliente &nbsp;<Icon name='angle double right' size="small" /> </span> Cadastro </h2>
+                        <h2> <span style={{color: 'darkgray'}}> Entregador &nbsp;<Icon name='angle double right' size="small" /> </span> Cadastro </h2>
 
                         <Divider />
 
@@ -62,7 +49,6 @@ class FormCliente extends React.Component{
 										maxLength="100"
 										value={this.state.nome}
 										onChange={e => this.setState({nome: e.target.value})}
-
 									/>
 
 									<Form.Input
@@ -72,7 +58,6 @@ class FormCliente extends React.Component{
 										mask="999.999.999-99"
 										value={this.state.cpf}
 										onChange={e => this.setState({cpf: e.target.value})}
-
 										/> 
 									</Form.Input>
 
@@ -88,7 +73,6 @@ class FormCliente extends React.Component{
 										mask="(99) 9999.9999" 
 										value={this.state.foneCelular}
 										onChange={e => this.setState({foneCelular: e.target.value})}
-
 										/> 
 									</Form.Input>
 
@@ -97,10 +81,9 @@ class FormCliente extends React.Component{
 										label='Fone Fixo'
                                         width={6}>
 										<InputMask 
-										mask="(99) 9999.9999"
+										mask="(99) 9999.9999" 
 										value={this.state.foneFixo}
 										onChange={e => this.setState({foneFixo: e.target.value})}
-
 										/> 
 									</Form.Input>
 
@@ -115,7 +98,6 @@ class FormCliente extends React.Component{
                                             placeholder="Ex: 20/03/1985"
 											value={this.state.dataNascimento}
 											onChange={e => this.setState({dataNascimento: e.target.value})}
-
                                         /> 
                                     </Form.Input>
 
@@ -164,4 +146,4 @@ class FormCliente extends React.Component{
 	}
 }
 
-export default FormCliente;
+export default FormEntregador;
