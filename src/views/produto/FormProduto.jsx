@@ -1,7 +1,6 @@
-import React from "react";
-import InputMask from 'react-input-mask';
-import { Button, Container, Divider, Form, Icon } from 'semantic-ui-react';
 import axios from "axios";
+import React from "react";
+import { Button, Container, Divider, Form, Icon } from 'semantic-ui-react';
 
 class FormProduto extends React.Component{
 	state = {
@@ -13,6 +12,31 @@ class FormProduto extends React.Component{
 		tempoEntregaMinimo: null,
 		tempoEntregaMaximo: null
 	}
+
+	salvar = () => {
+
+		let ProdutoRequest = {
+
+			codigo: this.state.codigo,
+			titulo: this.state.titulo,
+			descricao: this.state.descricao,
+			valorUnitario: this.state.valorUnitario,
+			tempoEntregaMinimo: this.state.tempoEntregaMinimo,
+			tempoEntregaMaximo: this.state.tempoEntregaMaximo
+		}
+
+	
+	
+		
+		axios.post("http://localhost:8082/api/produto", ProdutoRequest)
+		.then((response) => {
+			console.log('Produto cadastrado com sucesso.')
+		})
+		.catch((error) => {
+			console.log('Erro ao incluir o produto.')
+		}) 
+	}
+
 
     render(){
         return(
@@ -44,9 +68,10 @@ class FormProduto extends React.Component{
 									<Form.Input
                                         required
 										fluid
-										label='Código do Produto' placeholder="Informe o código do produto">
+										label='Código do Produto' placeholder="Informe o código do produto"
 										 value={this.state.codigo}
 										onChange={e => this.setState({codigo: e.target.value})}
+									>
 									</Form.Input>
 
 								</Form.Group>
@@ -57,9 +82,10 @@ class FormProduto extends React.Component{
 										fluid
 										label='Descrição'
                                         width={16}
-                                        placeholder="Informe a descrição do produto">
-											value={this.state.descricao}
+                                        placeholder="Informe a descrição do produto"
+										value={this.state.descricao}
 										onChange={e => this.setState({descricao: e.target.value})}
+									>
 									</Form.TextArea>
                                     </Form.Group>
 
