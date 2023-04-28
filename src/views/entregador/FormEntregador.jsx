@@ -20,8 +20,8 @@ class FormEntregador extends React.Component{
 		enderecoCidade:null, //
 		enderecoCep:null, //
 		enderecoUf:null, //
-		enderecoCompleto:null, //
-		ativo:null
+		enderecoComplemento:null //
+		
 	}
 
 
@@ -43,7 +43,7 @@ class FormEntregador extends React.Component{
 			enderecoCidade: this.state.enderecoCidade,
 			enderecoCep: this.state.enderecoCep,
 			enderecoUf: this.state.enderecoUf,
-			enderecoCompleto: this.state.enderecoCompleto
+			enderecoComplemento: this.state.enderecoComplemento
 
 		}
 
@@ -66,7 +66,7 @@ class FormEntregador extends React.Component{
 
                 <div style={{marginTop: '3%'}}>
 
-                    <Container textAlign='justified' >
+                    <Container textAlign='justified'>
 
                         <h2> <span style={{color: 'darkgray'}}> Entregador &nbsp;<Icon name='angle double right' size="small" /> </span> Cadastro </h2>
 
@@ -130,7 +130,7 @@ class FormEntregador extends React.Component{
 										/> 
 									</Form.Input>
 
-                                    <Form.Input
+									<Form.Input
                                         fluid
                                         label='Data Nascimento'
                                         width={6}
@@ -141,6 +141,7 @@ class FormEntregador extends React.Component{
                                             placeholder="Ex: 20/03/1985"
 											value={this.state.dataNascimento}
 											onChange={e => this.setState({dataNascimento: e.target.value})}
+
                                         /> 
                                     </Form.Input>
 
@@ -241,8 +242,8 @@ class FormEntregador extends React.Component{
                                         label='Endereço completo'
 										placeholder="Rua aparecida de Assis  nº19, Recife-PE"
                                         width={6}
-										value={this.state.enderecoCompleto}
-										onChange={e => this.setState({enderecoCompleto: e.target.value})}
+										value={this.state.enderecoComplemento}
+										onChange={e => this.setState({enderecoComplemento: e.target.value})}
                                     >
                                     </Form.Input>
 

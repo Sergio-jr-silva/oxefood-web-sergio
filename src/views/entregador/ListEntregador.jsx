@@ -69,7 +69,7 @@ render(){
                         </Button>
                         <br/><br/><br/>
                       
-                      <Table color='orange' sortable celled>
+                      <Table color='orange' sortable celled style={{marginLeft:'-20%'}}>
 
                           <Table.Header>
                               <Table.Row>
@@ -87,8 +87,8 @@ render(){
                                   <Table.HeaderCell>Cidade</Table.HeaderCell>
                                   <Table.HeaderCell>Cep</Table.HeaderCell>
                                   <Table.HeaderCell>UF</Table.HeaderCell>
-                                  <Table.HeaderCell>Endereço Completo</Table.HeaderCell>
-                                  <Table.HeaderCell textAlign='center' width={2}>Ações</Table.HeaderCell>
+                                  <Table.HeaderCell>Endereço Complemento</Table.HeaderCell>
+                                  <Table.HeaderCell textAlign='center' width={2} style={{paddingRight:'40px', paddingLeft:'40px'}}>Ações</Table.HeaderCell>
                               </Table.Row>
                           </Table.Header>
                      
@@ -109,8 +109,9 @@ render(){
                                       <Table.Cell>{entregador.enderecoNumero}</Table.Cell>
                                       <Table.Cell>{entregador.enderecoBairro}</Table.Cell>
                                       <Table.Cell>{entregador.enderecoCidade}</Table.Cell>
+                                      <Table.Cell>{entregador.enderecoCep}</Table.Cell>
                                       <Table.Cell>{entregador.enderecoUf}</Table.Cell>
-                                      <Table.Cell>{entregador.enderecoCompleto}</Table.Cell>
+                                      <Table.Cell>{entregador.enderecoComplemento}</Table.Cell>
                                       <Table.Cell textAlign='center'>
                                          
                                           <Button
