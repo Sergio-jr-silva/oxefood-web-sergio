@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Container, Divider, Icon, Table } from 'semantic-ui-react';
+import { Button, Container, Divider, Icon, Table, Modal } from 'semantic-ui-react';
 
 class ListProduto extends React.Component{
 
@@ -42,7 +42,7 @@ render(){
                     <Divider />
 
                     <div style={{marginTop: '4%'}}>
-
+                    <Link to={'/form-produto'}>
                         <Button
                             inverted
                             circular
@@ -52,12 +52,11 @@ render(){
                             floated='right'
                         >
                             <Icon name='clipboard outline' />
-                            <Link to={'/form-produto'}>Novo</Link>
+                          Novo
                         </Button>
                         <br/><br/><br/>
-                      
+                      </Link>
                       <Table color='orange' sortable celled>
-
                           <Table.Header>
                               <Table.Row>
                                   <Table.HeaderCell>Titulo</Table.HeaderCell>
