@@ -60,14 +60,20 @@ export default function FormCliente (){
 
         return(
             <div>
+				
+				<div style={{marginTop: '3%'}}>
 
-                <div style={{marginTop: '3%'}}>
+				<Container textAlign='justified' >
 
-                    <Container textAlign='justified' >
+					{ idProduto === undefined &&
+						<h2> <span style={{color: 'darkgray'}}> Produto &nbsp;<Icon name='angle double right' size="small" /> </span> Cadastro</h2>
+					}
 
-                        <h2> <span style={{color: 'darkgray'}}> Produto &nbsp;<Icon name='angle double right' size="small" /> </span> Cadastro </h2>
+					{ idProduto != undefined &&
+					<h2> <span style={{color: 'darkgray'}}> Produto &nbsp;<Icon name='angle double right' size="small" /> </span> Alteração</h2>
+					}
 
-                        <Divider />
+	<Divider />
 
 						<div style={{marginTop: '4%'}}>
 
