@@ -106,19 +106,21 @@ class ListComprador extends React.Component{
                                             </Table.Cell>
                                             <Table.Cell textAlign='center'>
                                               
-                                                <Button
-                                                   inverted
-                                                   circular
-                                                   icon='edit'
-                                                   color='blue'
-                                                   itle='Clique aqui para editar os dados deste cliente' /> &nbsp;
+                                            <Button
+                                            inverted
+                                             circular
+                                             color='green'
+                                             title='Clique aqui para editar os dados deste cliente'
+                                                icon>
+                                            <Link to="/form-comprador" state={{id: c.id}} style={{color: 'green'}}> <Icon name='edit' /> </Link>
+                                            </Button> &nbsp;
                                                    
                                                 <Button
                                                    inverted
                                                    circular
                                                    icon='trash'
                                                    color='red'
-                                                   title='Clique aqui para remover este cliente' />
+                                                   title='Clique aqui para remover este comprador' />
 
                                             </Table.Cell>
                                         </Table.Row>
