@@ -1,28 +1,43 @@
 import axios from 'axios';
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Container, Divider, Icon, Table, Header, Modal } from 'semantic-ui-react';
-import { ENDERECO_API } from '../../views/util/Constantes';
+import { Button, Container, Divider, Header, Icon, Modal, Table } from 'semantic-ui-react';
+
 class ListCliente extends React.Component{
 
    state = {
 
-       listaClientes: [],
-       openModal: false,
-       idRemover: null,
-
+        openModal: false,
+        idRemover: null,
+        listaClientes: []
       
    }
+   confirmaRemover = (id) => {
+
+        this.setState({
+            openModal: true,
+            idRemover: id
+        })
+   }
+
+   setOpenModal = (val) => {
+
+    this.setState({
+        openModal: val
+    })
+
+};
+
 
    remover = async () => {
 
-    await axios.delete(ENDERECO_API + 'api/cliente/' + this.state.idRemover)
+    await axios.delete("http://localhost:8082/api/cliente" + this.state.idRemover)
     .then((response) => {
 
         this.setState({ openModal: false })
         console.log('Cliente removido com sucesso.')
 
-        axios.get(ENDERECO_API + "api/cliente")
+        axios.get("http://localhost:8082/api/cliente")
         .then((response) => {
        
             this.setState({
@@ -37,29 +52,12 @@ class ListCliente extends React.Component{
 };
 
 
-   confirmaRemover = (id) => {
-
-    this.setState({
-        openModal: true,
-        idRemover: id
-         })  
-    }
-
-    setOpenModal = (val) => {
-
-        this.setState({
-            openModal: val
-        })
-   
-    };
- 
-    
-
    componentDidMount = () => {
       
        this.carregarLista();
       
    }
+
    carregarLista = () => {
 
     axios.get("http://localhost:8082/api/cliente")
@@ -74,19 +72,21 @@ class ListCliente extends React.Component{
 
 formatarData = (dataParam) => {
 
-    if (dataParam == null || dataParam == '') {
-        return ''
-    }
-    
-    let dia = dataParam.substr(8,2);
-    let mes = dataParam.substr(5,2);
-    let ano = dataParam.substr(0,4);
-    let dataFormatada = dia + '/' + mes + '/' + ano;
+     if (dataParam == null || dataParam == '') {
+         return ''
+     }
+     
+     let dia = dataParam.substr(8,2);
+     let mes = dataParam.substr(5,2);
+     let ano = dataParam.substr(0,4);
+     let dataFormatada = dia + '/' + mes + '/' + ano;
 
-    return dataFormatada
-};
+     return dataFormatada
+ };
 
-render(){
+
+  
+ render(){
     return(
         <div>
 
@@ -99,28 +99,27 @@ render(){
                     <Divider />
 
                     <div style={{marginTop: '4%'}}>
-                    <Link to={'/form-cliente'}>
-                        <Button 
+
+                        <Button
                             inverted
                             circular
                             icon
                             labelPosition='left'
                             color='orange'
                             floated='right'
-                            
                         >
-                            
-                            <Icon name='clipboard outline'/>
-
-                            Novo
+                            <Icon name='clipboard outline' />
+                            <Link to={'/form-cliente'}>Novo</Link>
                         </Button>
+                     
                         <br/><br/><br/>
-                        </Link>
+                      
                       <Table color='orange' sortable celled>
 
                           <Table.Header>
                               <Table.Row>
                                   <Table.HeaderCell>Nome</Table.HeaderCell>
+                                  <Table.HeaderCell>Endereço</Table.HeaderCell>
                                   <Table.HeaderCell>CPF</Table.HeaderCell>
                                   <Table.HeaderCell>Data de Nascimento</Table.HeaderCell>
                                   <Table.HeaderCell>Fone Celular</Table.HeaderCell>
@@ -135,32 +134,46 @@ render(){
 
                                   <Table.Row>
                                       <Table.Cell>{cliente.nome}</Table.Cell>
+                        
+                                    {/*// Esta parte verifica se a propriedade "endereco" do objeto "cliente" existe. 
+                                    Se existir, então a propriedade "rua" do objeto "endereco" é exibida. 
+                              Caso contrário, é exibida uma string vazia. */}
+                                    <Table.Cell>
+                                              {`${cliente.endereco ? cliente.endereco.rua : ''}, 
+                                                ${cliente.endereco ? cliente.endereco.numero : ''},
+                                                ${cliente.endereco ? cliente.endereco.bairro : ''}, 
+                                                ${cliente.endereco ? cliente.endereco.cep : ''}, 
+                                                ${cliente.endereco ? cliente.endereco.cidade : ''}, 
+                                                ${cliente.endereco ? cliente.endereco.estado : ''}, 
+                                                ${cliente.endereco ? cliente.endereco.complemento : ''}`}</Table.Cell>
+
                                       <Table.Cell>{cliente.cpf}</Table.Cell>
                                       <Table.Cell>{this.formatarData(cliente.dataNascimento)}</Table.Cell>
                                       <Table.Cell>{cliente.foneCelular}</Table.Cell>
                                       <Table.Cell>{cliente.foneFixo}</Table.Cell>
                                       <Table.Cell textAlign='center'>
                                          
-                                      <Button
-                                            inverted
-                                             circular
-                                             color='green'
-                                             title='Clique aqui para editar os dados deste cliente'
-                                                icon>
-                                        <Link to="/form-cliente" state={{id: cliente.id}} style={{color: 'green'}}> <Icon name='edit' /> </Link>
-                                    </Button> &nbsp;
+                                  <Button
+                                    inverted
+                                    circular
+                                    color='green'
+                                    title='Clique aqui para editar os dados deste cliente'
+                                    icon>
+                                     <Link to="/form-cliente" state={{id: cliente.id}} style={{color: 'green'}}> <Icon name='edit' /> </Link> 
+                                </Button> &nbsp;
 
-                                        <Button
+                                
+                                    <Button
                                                    inverted
                                                    circular
-                                                   icon='trash'
+                                                   
                                                    color='red'
-                                                   title='Clique aqui para remover este cliente' 
-                                                   onClick={e => this.confirmaRemover(cliente.id)}
- 
-                                                   />
-                                                  
-                                            
+                                                   title='Clique aqui para remover este cliente'
+                                                   onClick={e => this.confirmaRemover(cliente.id)}>
+                                                    <Icon name='trash'/>
+
+                                                    </Button>
+
                                            </Table.Cell>
                                        </Table.Row>
                                    ))}
@@ -170,8 +183,7 @@ render(){
                        </div>
                    </Container>
                </div>
-
-               <Modal
+         <Modal
                    			basic
                    			onClose={() => this.setOpenModal(false)}
                    			onOpen={() => this.setOpenModal(true)}
@@ -191,10 +203,13 @@ render(){
                    			</Modal.Actions>
                			</Modal>
 
+
+
            </div>
+            
+
        )
    }
 }
 
 export default ListCliente;
-

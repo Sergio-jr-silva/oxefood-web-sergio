@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Menu } from "semantic-ui-react";
+import { Dropdown, Menu } from "semantic-ui-react";
 
 class MenuSistema extends React.Component{
 
@@ -21,45 +21,74 @@ class MenuSistema extends React.Component{
                        onClick={this.handleItemClick}
                        as={Link}
                        to='/'
+
+
+
                    />
-                <Menu.Item
-                   name='cliente'
-                   active={this.state.activeItem === 'cliente'}
-                   onClick={this.handleItemClick}
-                   as={Link}
-                   to='/list-cliente'
+                 <Menu.Menu className='navbar__item--pc'>
+                        <Dropdown item text='Cliente'>
+                            <Dropdown.Menu>
+                                <Dropdown.Item 
+                                    name='endereco'
+                                    active={this.state.activeItem === 'endereco'}
+                                    onClick={this.handleItemClick}
+                                    text='Endereço de cliente' 
+                                    as={Link} 
+                                    to='/list-endereco-cliente'
+                                />
+                                <Dropdown.Item
+                                    name='cliente'
+                                    active={this.state.activeItem === 'cliente'}
+                                    onClick={this.handleItemClick}
+                                    text='Cliente' 
+                                    as={Link} 
+                                    to='/list-cliente'
+                                />
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </Menu.Menu>
 
-               />
 
-               <Menu.Item
-                   name='produto'
-                   active={this.state.activeItem === 'produto'}
-                   onClick={this.handleItemClick}
-                   as={Link}
-                   to='/list-produto'
-               />
 
-               <Menu.Item
-                   name='entregador'
-                   active={this.state.activeItem === 'entregador'}
-                   onClick={this.handleItemClick}
-                   as={Link}
-                   to='/list-entregador'
-               />
 
-            <Menu.Item
-                   name='comprador'
-                   active={this.state.activeItem === 'comprador'}
-                   onClick={this.handleItemClick}
-                   as={Link}
-                   to='/list-comprador'
-               />
+                    <Menu.Menu className='navbar__item--pc'>
+                        <Dropdown item text='Produto'>
+                            <Dropdown.Menu>
+                                <Dropdown.Item 
+                                    name='categoria'
+                                    active={this.state.activeItem === 'categoria'}
+                                    onClick={this.handleItemClick}
+                                    text='Categoria de Produto' 
+                                    as={Link} 
+                                    to='/list-categoria-produto'
+                                />
+                                <Dropdown.Item
+                                    name='produto'
+                                    active={this.state.activeItem === 'produto'}
+                                    onClick={this.handleItemClick}
+                                    text='Produto' 
+                                    as={Link} 
+                                    to='/list-produto'
+                                />
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </Menu.Menu>
 
-           </Menu>
-       </>
-   )
+
+
+
+                   <Menu.Item
+                       name='entregador'
+                       active={this.state.activeItem === 'entregador'}
+                       onClick={this.handleItemClick}
+                       as={Link}
+                       to='/list-entregador'
+                   />
+
+    
+               </Menu>
+           </>
+       )
+   }
 }
-}
-
 export default MenuSistema;
-
