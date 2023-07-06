@@ -4,7 +4,7 @@ import InputMask from 'react-input-mask';
 import { Link, useLocation } from "react-router-dom";
 import { Button, Container, Divider, Form, Icon } from 'semantic-ui-react';
 import { ENDERECO_API } from '../../views/util/Constantes';
-
+import MenuSistema from '../../MenuSistema';
 export default function FormComprador () {
 
 	const { state } = useLocation();
@@ -68,7 +68,7 @@ export default function FormComprador () {
     
         return(
             <div>
-
+ 			 <MenuSistema />
                 <div style={{marginTop: '3%'}}>
 
                     <Container textAlign='justified' >

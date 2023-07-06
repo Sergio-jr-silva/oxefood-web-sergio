@@ -4,6 +4,7 @@ import InputMask from 'react-input-mask';
 import { Link, useLocation } from "react-router-dom";
 import { Button, Container, Divider, Form, Icon } from 'semantic-ui-react';
 import {mensagemErro, notifyError, notifySuccess } from '../../views/util/Util';
+import MenuSistema from '../../MenuSistema';
 export default function FormCliente (){
 
 			const { state } = useLocation();
@@ -96,10 +97,10 @@ export default function FormCliente (){
    
         return(
             <div>
-
+				  <MenuSistema />
                 <div style={{marginTop: '3%'}}>
 
-											
+
 							<Container textAlign='justified' >
 
 							{ idCliente === undefined &&

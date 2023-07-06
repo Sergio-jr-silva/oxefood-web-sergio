@@ -13,7 +13,7 @@ function App() {
 
    <div className="App">
 
-     <MenuSistema />
+   
      <ToastContainer />
 
      <Rotas />
